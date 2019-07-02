@@ -43,14 +43,14 @@
                   (ufo-render (aim-ufo s) BACKGROUND))]
     [(fired? s)
      (tank-render
-       (fired-tank s)
-       (ufo-render (fired-ufo s)
-                   (missile-render (fired-missile s)
-                                   BACKGROUND)))]))
+      (fired-tank s)
+      (ufo-render (fired-ufo s)
+                  (missile-render (fired-missile s)
+                                  BACKGROUND)))]))
 
 
 (define TANK
-   (rectangle 20 5 "solid" "blue"))
+  (rectangle 20 5 "solid" "blue"))
 
 ; Tank Image -> Image 
 ; adds t to the given image im
@@ -62,10 +62,10 @@
  
 
 (tank-render
-  (fired-tank s)
-  (ufo-render (fired-ufo s)
-              (missile-render (fired-missile s)
-                              BACKGROUND)))
+ (fired-tank s)
+ (ufo-render (fired-ufo s)
+             (missile-render (fired-missile s)
+                             BACKGROUND)))
 
 
 (define UFO
@@ -83,17 +83,20 @@
 
 
 (ufo-render
-  (fired-ufo s)
-  (tank-render (fired-tank s)
-               (missile-render (fired-missile s)
-                               BACKGROUND)))
+ (fired-ufo s)
+ (tank-render (fired-tank s)
+              (missile-render (fired-missile s)
+                              BACKGROUND)))
 
 (define MISSILE
   (triangle 40 "solid" "red"))
 
 ; Missile Image -> Image 
 ; adds m to the given image im
-(define (missile-render m im) im)
+(define (missile-render m im)
+  (place-image im
+               (posn-x (fired-missile s)) (posn-y (fired-missile s))
+               BACKGROUND))
 
 
 ; 导弹未发射或者导弹未射中UFO的时候，两个表达式是一样的结果
